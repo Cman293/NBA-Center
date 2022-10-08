@@ -1,0 +1,103 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+Shaq_dataset_xls <- read_excel("C:/Users/c0783953/OneDrive - St. Thomas University/Shaq.dataset.xls.xlsx")
+```
+
+```{r}
+kareem_datasets2_xls <- read_excel("C:/Users/c0783953/OneDrive - St. Thomas University/kareem.datasets2.xls.xlsx")
+```
+
+```{r}
+tim_duncan_xls <- read_excel("C:/Users/c0783953/OneDrive - St. Thomas University/tim duncan.xls.xlsx")
+```
+
+
+```{r}
+yao_ming_ <- read_excel("yao ming .xlsx")
+```
+
+
+```{r}
+ Houston_rockets_xls <- read_excel("Houston rockets.xls.xlsx")
+```
+
+```{r}
+Lakers_xls <- read_excel("Lakers.xls.xlsx")
+```
+#
+```{r}
+#Season to Points with shaquille oneal with the Lakers
+ggplot(data = Shaq_dataset_xls, aes(x=PTS, y=Season)) + geom_line() +
+labs(title = "Age vs Season", subtitle = "Source: Shaquille Oneal" , x= "Points", y= "Season")
+```
+
+```{r}
+#season n to points witht la lakers
+ggplot(data = kareem_datasets2_xls, aes(x=PTS, y=Season)) + geom_line() +
+labs(title = "Age vs Points", subtitle = "Source: Kareem Abdul-Jabbar" , x= "Points", y= "Age")
+```
+
+```{r}
+ggplot(data = yao_ming_, aes(x=PTS, y=Season)) + geom_line() +
+labs(title = "Age vs Season", subtitle = "Source: Yao Ming " , x= "Points", y= "Season")
+```
+
+
+
+```{r}
+ggplot(data = Shaq_dataset_xls, aes(x=PTS, y=Age)) + geom_path() +
+labs(title = "Age vs Points", subtitle = "Source: Shaquille Oneal" , x= "Points", y= "Age")
+```
+
+```{r}
+ggplot(data = yao_ming_, aes(x=PTS, y=Age)) + geom_path() +
+labs(title = "Age vs Points", subtitle = "Source: Yao Ming " , x= "Points", y= "Age")
+```
+
+
+```{r}
+ggplot(data = kareem_datasets2_xls, aes(x=PTS, y=Age)) + geom_smooth(method = "lm") +
+labs(title = "Age vs Points", subtitle = "Source: Kareem Abdul-Jabbar" , x= "Points", y= "Age")
+```
+
+
+
+
+
+
+
+
+
+
+Linear regression Shauille Oneal
+```{r}
+model <- lm(PTS ~ Age, data = Shaq_dataset_xls)
+model
+testPoints <- data.frame(Age = 32)
+PointsPrediction <- predict(model, testPoints)
+cat("If Shaquille Oneal played at 32yo he would score",PointsPrediction,"points")
+```
+
+```{r}
+model <- lm(PTS ~ Age, data = kareem_datasets2_xls)
+model
+testPoints <- data.frame(Age = 32)
+PointsPrediction <- predict(model, testPoints)
+cat("If Kareem Abdul-Jabbar played at 32yo he would score",PointsPrediction,"points")
+```
+
+```{r}
+model <- lm(PTS ~ Age, data = yao_ming_)
+model
+testPoints <- data.frame(Age = 32)
+PointsPrediction <- predict(model, testPoints)
+cat("If Yao Ming played at 32yo he would score",PointsPrediction,"points")
+```
+
+```{r}
+wilcox.test(points, Age)
+```
+
